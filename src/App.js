@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import DashboardLayout from './components/sidebar/DashboardLayout';
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import useSettings from './hooks/useSettings';
+import {createCustomTheme} from './theme'
+import AddNewUser from './pages/add-new-user';
+import RTL from './components/input-fields/RTL';
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
+import "./i18n";
 
 function App() {
+  const {
+    settings
+  } = useSettings();
+  const theme = createCustomTheme({
+    theme: settings.theme,
+    direction: settings.direction,
+    responsiveFontSizes: settings.responsiveFontSizes
+  });
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <RTL>
+          <CssBaseline />
+          
+          <DashboardLayout />
+        </RTL>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 
