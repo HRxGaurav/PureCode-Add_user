@@ -1,5 +1,4 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardLayout from './components/sidebar/DashboardLayout';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import useSettings from './hooks/useSettings';
